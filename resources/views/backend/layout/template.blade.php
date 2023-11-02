@@ -23,6 +23,11 @@
             @include('backend.includes.topbar')
 
 
+             {{-- //body content  --}}
+
+                @yield('body')
+    
+                {{-- //body content  --}}
         
         
             @include('backend.includes.footer')

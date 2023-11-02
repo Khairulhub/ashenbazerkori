@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Backend\Admincontroller;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\Admincontroller;
+use App\Http\Controllers\Backend\Brandcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +31,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('/dashbord',[Admincontroller::class, 'index']);
+    Route::get('/dashbord',[Admincontroller::class, 'index'])->name('dashbord');
+
+
+    //create bands route 
+
+    Route::group(['prefix'=>'brand'],function(){
+        Route::get('/manage',[Brandcontroller::class, 'index'])->name('brand.manage');
+        Route::get('/create',[Brandcontroller::class, 'create'])->name('brand.create');
+        Route::post('/store',[Brandcontroller::class, 'store'])->name('brand.store');
+        Route::get('/edit/{id}',[Brandcontroller::class, 'edit'])->name('brand.edit');
+        Route::post('/update/{id}',[Brandcontroller::class, 'update'])->name('brand.update');
+        Route::get('/delete/{id}',[Brandcontroller::class, 'destroy'])->name('brand.delete');
+    });
 }
-
-
 );
