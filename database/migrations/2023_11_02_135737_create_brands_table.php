@@ -15,9 +15,10 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug');
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->integer('is_featured')->default(0)->comment('0 for normal and 1 for featured');
+            $table->integer('status')->default(0)->comment('0 for InActive and 1 for Active');
             $table->timestamps();
         });
     }

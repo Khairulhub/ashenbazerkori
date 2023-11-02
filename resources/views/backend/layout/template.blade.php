@@ -35,6 +35,7 @@
         </div>
        
         @include('backend.includes.script')
+        {{-- <script src="https://kit.fontawesome.com/4b92de7e76.js" crossorigin="anonymous"></script> --}}
     
       </body>
     </html>

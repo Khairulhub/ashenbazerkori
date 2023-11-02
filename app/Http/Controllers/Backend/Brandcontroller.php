@@ -13,7 +13,7 @@ class Brandcontroller extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.brand.manage');
     }
 
     /**
@@ -21,7 +21,7 @@ class Brandcontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.Brand.create');
     }
 
     /**

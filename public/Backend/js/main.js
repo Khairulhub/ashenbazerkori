@@ -8,6 +8,9 @@
  */
 
 // Disable the on-canvas tooltip
+<script src="https://kit.fontawesome.com/4b92de7e76.js" crossorigin="anonymous"></script>
+
+
 Chart.defaults.pointHitDetectionRadius = 1;
 Chart.defaults.plugins.tooltip.enabled = false;
 Chart.defaults.plugins.tooltip.mode = 'index';
