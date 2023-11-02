@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Backend\Brand;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+use File;
 
 class Brandcontroller extends Controller
 {
@@ -29,8 +32,26 @@ class Brandcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand = new Brand();
+        $brand->name  = $request->name;
+        $brand->slug  = Str::slug($request->name);
+        $brand->description  = $request->description;
+      
+        $brand->is_featured  = $request->is_featured;
+        $brand->status  = $request->status;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $img = rand() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('Backend/img/brand/' . $img);
+            Image::make($image)->save($location);
+            $brand->image = $img;  
+        }
+
+        $brand->save();
+        return redirect()->route('brand.manage');
     }
+
 
     /**
      * Display the specified resource.

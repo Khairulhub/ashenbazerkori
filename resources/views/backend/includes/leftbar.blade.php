@@ -20,7 +20,7 @@
             <use xlink:href="{{asset('backend/vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
           </svg> Brands</a>
         <ul class="nav-group-items">
-          <li class="nav-item"><a class="nav-link" href="{{route('brand.create')}}"><span class="nav-icon"></span> - Create Brand</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('brand.create')}}"><span class="nav-icon"></span> - Create New Brand</a></li>
           <li class="nav-item"><a class="nav-link" href="{{route('brand.manage')}}"><span class="nav-icon"></span> - Manage All Brands</a></li>
           
          
