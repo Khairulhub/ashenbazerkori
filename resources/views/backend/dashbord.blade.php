@@ -1,1 +1,9 @@
-this is admin page
+@extends('backend.layout.template')
+
+
+
+
+
+
+
+
