@@ -71,3 +71,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 -Model = Backend and Frontend
 -Controller = Backend and Frontend
 -view = Backend and Frontend
+
+
+==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
+migrations with command 
+
+==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
+
