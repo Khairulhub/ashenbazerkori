@@ -15,8 +15,10 @@ class Brandcontroller extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    // here $brands is a object and Brand is a model,by using model we take all the data from the database and send it to the manage page
     {
-        return view('backend.pages.brand.manage');
+        $brands = Brand::orderBy('name', 'asc')->get();
+        return view('backend.pages.brand.manage',compact('brands'));
     }
 
     /**

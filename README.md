@@ -77,4 +77,50 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 migrations with command 
 
 ==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
+                        manage page a pic dekhano 
+                        serial number thik kora
+                        is_featured and status show
+                        code is below 
+==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
 
+ @php $i=1; @endphp
+    @foreach ( $brands as $brand )
+                <tr>
+                    <th scope="row">{{$i}}</th>
+                    <td>
+                        @if(!is_null($brand->image))
+                        <img src="{{ asset('Backend/img/brand') }}/{{$brand -> image}}" alt="" width="30">
+                        @else
+                        No Thumbanil
+                        @endif
+                    </td>
+                    <td>{{$brand -> name}}</td>
+                    <td>{{$brand -> slug}}</td>
+                    <td>{{$brand -> description}}</td>
+                    {{-- {{$brand -> is_featured}} --}}
+                    <td>
+                        @if ($brand -> is_featured == 1)
+                            <span class="badge bg-success">Yes</span>
+                        @else
+                            <span class="badge bg-warning">No</span>
+                        @endif
+                    </td>
+                    {{-- {{$brand -> status}} --}}
+                    <td>
+                        @if ($brand -> status == 1)
+                            <span class="badge bg-success">Active</span>
+                        @else
+                            <span class="badge bg-danger">InActive</span>
+                        @endif
+                    </td>
+                    <td >
+                        <i class="fa-solid fa-pen-to-square text-success me-2"></i>
+    
+                        <i class="fa-solid fa-trash text-danger ms-2"></i>
+                    </td>
+                  </tr>
+
+    @php $i++; @endphp
+@endforeach
+              
+           
