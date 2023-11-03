@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+//this 4 line is for image upload and category is model
+use App\Models\Backend\Category;
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+use File;
 
 class Categorycontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         //

@@ -14,6 +14,7 @@
           </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a>
       </li>
     
+      {{-- brand start --}}
       <li class="nav-title">Components</li>
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
@@ -22,11 +23,24 @@
         <ul class="nav-group-items">
           <li class="nav-item"><a class="nav-link" href="{{route('brand.create')}}"><span class="nav-icon"></span> - Create New Brand</a></li>
           <li class="nav-item"><a class="nav-link" href="{{route('brand.manage')}}"><span class="nav-icon"></span> - Manage All Brands</a></li>
-          
-         
+        </ul>
+      </li>
+
+      {{-- brand ends --}}
+
+      {{-- category menu --}}
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="{{asset('backend/vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
+          </svg> Category</a>
+        <ul class="nav-group-items">
+          <li class="nav-item"><a class="nav-link" href="{{route('category.create')}}"><span class="nav-icon"></span> - Create New Category</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('category.manage')}}"><span class="nav-icon"></span> - Manage All Categories</a></li>
         </ul>
       </li>
      
+
+      {{-- category end --}}
   
       <li class="nav-item"><a class="nav-link" href="widgets.html">
           <svg class="nav-icon">
