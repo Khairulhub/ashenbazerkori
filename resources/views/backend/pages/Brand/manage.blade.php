@@ -33,7 +33,7 @@
                     <th scope="row">{{$i}}</th>
                     <td>
                         @if(!is_null($brand->image))
-                        <img src="{{ asset('Backend/img/brand') }}/{{$brand -> image}}" alt="" width="30">
+                        <img src="{{ asset('Backend/img/brand') }}/{{$brand -> image}}" alt="" width="40">
                         @else
                         No Thumbanil
                         @endif
@@ -58,9 +58,9 @@
                         @endif
                     </td>
                     <td >
-                        <i class="fa-solid fa-pen-to-square text-success me-2"></i>
+                        <a href="{{ route('brand.edit',$brand->id) }}"><i class="fa-solid fa-pen-to-square text-success me-2"></i></a>
     
-                        <i class="fa-solid fa-trash text-danger ms-2"></i>
+                        <a href="{{ route('brand.delete',$brand->id) }}"><i class="fa-solid fa-trash text-danger ms-2"></i></a>
                     </td>
                   </tr>
 
