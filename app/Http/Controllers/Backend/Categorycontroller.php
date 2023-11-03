@@ -15,7 +15,8 @@ class Categorycontroller extends Controller
     
     public function index()
     {
-        //
+        $categories=Category::orderBy('name','asc')->get();
+        return view('backend.pages.Category.manage',compact('categories'));
     }
 
     /**
@@ -23,7 +24,11 @@ class Categorycontroller extends Controller
      */
     public function create()
     {
-        //
+        
+
+
+        
+        return view('backend.pages.Category.create');
     }
 
     /**
@@ -31,7 +36,28 @@ class Categorycontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        
+        $category-> name = $request->name;
+        $category-> slug = Str::slug( $request->name) ;
+        $category-> description = $request->description;
+        $category-> is_parent = $request->is_parent;
+        $category-> status = $request->status;
+
+        if($request->hasFile('image'))
+        {
+            $image =$request->file('image');
+            $img = rand().'.'.$image->getClientOriginalExtension();
+            $location =public_path('Backend/img/category/'.$img);
+            Image::make($image)->save($location);
+            $category->image = $img;
+            
+        }
+        $category->save();
+        return redirect()->route('category.manage');
+        
+
+        
     }
 
     /**
