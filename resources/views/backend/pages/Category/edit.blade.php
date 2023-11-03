@@ -10,31 +10,32 @@
    
     <div class="card p-4">
         <div>
-            <h4 class=" mb-3">Update Information of Brand</h4>
+            <h4 class=" mb-3">Update Information of Category</h4>
         </div>
 
         <div>
-            <form action="{{ route('brand.update',$brand->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                <div class="form-group mb-2">
-                <label for="name" class="fw-bold">Brand Name</label>
-                <input type="text" id="name" name="name" value="{{$brand->name}}"  class="form-control">
+                <label for="name" class="fw-bold">Category Name</label>
+                <input type="text" id="name" name="name" value="{{$category->name}}"  class="form-control">
                </div>
 
             
                 <div class="form-group mb-2">
-                    <label for="description" class="fw-bold">Brand Description</label>
-                    <textarea type="text" id="description" name="description" value="" rows="5" class="form-control">{{ $brand->description }} </textarea>
+                    <label for="description" class="fw-bold">Category Description</label>
+                    <textarea type="text" id="description" name="description" value="" rows="5" class="form-control">{{ $category->description }} </textarea>
                 </div>
 
                 <div class="form-group mb-2">
-                    <label for="is_featured" class="fw-bold">Is Featured</label>
-                    <select name="is_featured" id="is_featured"  class="form-select">
+                    <label for="is_parent" class="fw-bold">Is Featured</label>
+                    <select name="is_parent" id="is_parent"  class="form-select">
 
-                        <option selected> Please select the featured status</option>
-                        <option value="1" @if($brand->is_featured==1) selected @endif> Yes Featured</option>
-                        <option value="0" @if($brand->is_featured==0) selected @endif> Not Featured</option>
+                       
+                        <option selected> Please select the Parent Category if any</option>
+                        <option value="1"> Yes Featured</option>
+                        <option value="0"> Not Featured</option>
                     </select>
                 </div>
 
@@ -43,16 +44,16 @@
                     <select name="status" id="status"  class="form-select">
 
                         <option selected> Please select the  status</option>
-                        <option value="1" @if($brand->status==1) selected @endif> Active</option>
-                        <option value="0" @if($brand->status==0) selected @endif> InActive</option>
+                        <option value="1" @if($category->status==1) selected @endif> Active</option>
+                        <option value="0" @if($category->status==0) selected @endif> InActive</option>
                     </select>
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="image" class="fw-bold">Brand Image / Logo</label><br>
+                    <label for="image" class="fw-bold">Category Image / Logo</label><br>
 
-                    @if(!is_null($brand->image))
-                    <img src="{{ asset('Backend/img/brand') }}/{{$brand -> image}}" alt="" width="40">
+                    @if(!is_null($category->image))
+                    <img src="{{ asset('Backend/img/category') }}/{{$category -> image}}" alt="" width="40">
                     @else
                     No Thumbanil
                     @endif
@@ -62,7 +63,7 @@
 
 
                 <div class="form-group">
-                    <input type="submit" name="updatebrand" value="Save Changes" class="btn btn-primary">
+                    <input type="submit" name="updatecategory" value="Save Changes" class="btn btn-primary">
                 </div>
             </form>
 

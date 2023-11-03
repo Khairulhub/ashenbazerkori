@@ -73,7 +73,13 @@ class Categorycontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        if(!is_null($category)){
+            return view('backend.pages.category.edit',compact('category'));
+        }
+        else{
+            return redirect()->route('category.manage');
+        }
     }
 
     /**
@@ -81,7 +87,34 @@ class Categorycontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        
+        
+
+        
+        $category->name  = $request->name;
+        $category->slug  = Str::slug($request->name);
+        $category->description  = $request->description;
+      
+        $category->is_parent  = $request->is_parent;
+        $category->status  = $request->status;
+
+        if (!is_null($request->hasFile('image'))) {
+            $image = $request->file('image');
+        $img = rand() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('Backend/img/category/' . $img);
+
+        // Delete the old image file if it exists
+        if (File::exists('Backend/img/category/' . $category->image)) {
+            File::delete('Backend/img/category/' . $category->image);
+        }
+
+        Image::make($image)->save($location);
+        $category->image = $img;
+        }
+
+        $category->save();
+        return redirect()->route('category.manage');
     }
 
     /**
@@ -89,6 +122,17 @@ class Categorycontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        if(!is_null($category)){
+            // Delete the category image
+            if (File::exists('Backend/img/category/' . $category->image)) {
+                File::delete('Backend/img/category/' . $category->image);
+            }
+            $category->delete();
+            return redirect()->route('category.manage');
+        }
+        else{
+            return redirect()->route('category.manage');
+        }
     }
 }
