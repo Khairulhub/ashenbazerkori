@@ -118,14 +118,17 @@ class Brandcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        // $brand = Brand::find($id);
-        // if(!is_null($brand)){
-        //     // Delete the brand image
-        //     if (File::exists('Backend/img/brand/' . $brand->image)) {
-        //         File::delete('Backend/img/brand/' . $brand->image);
-        //     }
-        //     $brand->delete();
-        // }
-        // return redirect()->route('brand.manage');
+        $brand = Brand::find($id);
+        if(!is_null($brand)){
+            // Delete the brand image
+            if (File::exists('Backend/img/brand/' . $brand->image)) {
+                File::delete('Backend/img/brand/' . $brand->image);
+            }
+            $brand->delete();
+            return redirect()->route('brand.manage');
+        }
+        else{
+            return redirect()->route('brand.manage');
+        }
     }
 }

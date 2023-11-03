@@ -24,4 +24,8 @@
 <link href="{{asset('backend/css/examples.css')}}" rel="stylesheet">
 <link href="{{asset('backend/vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+
+
 {{-- {{asset('backend/')}} --}}
