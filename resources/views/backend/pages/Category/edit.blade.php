@@ -33,9 +33,14 @@
                     <select name="is_parent" id="is_parent"  class="form-select">
 
                        
-                        <option selected> Please select the Parent Category if any</option>
-                        <option value="1"> Yes Featured</option>
-                        <option value="0"> Not Featured</option>
+                        <option value="0"> Please select the Parent Category if any</option>
+
+                        @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', 0)->get() as $parentcategory )
+                        <option value="{{$parentcategory->id}}" > {{ $parentcategory->name}}</option>
+                            @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', $parentcategory->id)->get() as $childcategory )
+                                <option value="{{$childcategory->id}}" >- {{ $childcategory->name}}</option>
+                            @endforeach
+                        @endforeach
                     </select>
                 </div>
 

@@ -36,6 +36,9 @@
 
                         @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', 0)->get() as $parentcategory )
                         <option value="{{$parentcategory->id}}"> {{ $parentcategory->name}}</option>
+                            @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', $parentcategory->id)->get() as $childcategory )
+                                <option value="{{$childcategory->id}}">- {{ $childcategory->name}}</option>
+                            @endforeach
                         @endforeach
                     </select>
                 </div>
