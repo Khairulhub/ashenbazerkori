@@ -28,20 +28,21 @@
                     <textarea type="text" id="description" name="description" value="" rows="5" class="form-control">{{ $category->description }} </textarea>
                 </div>
 
-                <div class="form-group mb-2">
-                    <label for="is_parent" class="fw-bold">Is Featured</label>
+                {{-- <div class="form-group mb-2">
+                    <label for="is_parent" class="fw-bold">Is Featured  </label>
+                    <span class="text-warning">Change the Primary category first<span class="text-danger">*</span></span>
                     <select name="is_parent" id="is_parent"  class="form-select">
 
                        
                         <option value="0"> Please select the Parent Category if any</option>
 
                         @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', 0)->get() as $parentcategory )
-                        <option value="{{$parentcategory->id}}"
+                        <option value="{{$parentcategory->is_parent}}"
                              @if ($parentcategory->is_parent==0 && $category->id==$parentcategory->id)
                                 selected
                             @endif
                             > {{ $parentcategory->name}}
-                    </option>
+                            </option>
 
 
                             @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', $parentcategory->id)->get() as $childcategory )
@@ -53,7 +54,33 @@
                             @endforeach
                         @endforeach
                     </select>
+                </div> --}}
+
+                {{-- copy form chat gpt.  --}}
+                <div class="form-group mb-2">
+                    <label for="is_parent" class="fw-bold">Is Featured</label>
+                    <span class="text-warning">Change the Primary category first<span class="text-danger">*</span></span>
+                    <select name="is_parent" id="is_parent" class="form-select" >  {{--@if(!$category->is_parent) disabled @endif--}}
+                        <option value="0"> Please select the Parent Category if any</option>
+                        @foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', 0)->get() as $parentcategory)
+                            <option value="{{ $parentcategory->is_parent }}"
+                                @if ($parentcategory->is_parent == 0 && $category->id == $parentcategory->is_parent)
+                                selected
+                                @endif
+                            > {{ $parentcategory->name }}
+                            </option>
+                
+                            @foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', $parentcategory->is_parent)->get() as $childcategory)
+                                <option value="{{ $childcategory->id }}"
+                                    @if ($category->id == $childcategory->id)
+                                    selected
+                                    @endif
+                                >- {{ $childcategory->name }}</option>
+                            @endforeach
+                        @endforeach
+                    </select>
                 </div>
+                
 
 
 

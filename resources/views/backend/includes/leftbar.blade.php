@@ -41,6 +41,19 @@
      
 
       {{-- category end --}}
+      {{-- Product  start --}}
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="{{asset('backend/vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
+          </svg> Product </a>
+        <ul class="nav-group-items">
+          <li class="nav-item"><a class="nav-link" href="{{route('product.create')}}"><span class="nav-icon"></span> - Create New Product</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('product.manage')}}"><span class="nav-icon"></span> - Manage All products</a></li>
+        </ul>
+      </li>
+     
+
+      {{-- Product end --}}
   
       <li class="nav-item"><a class="nav-link" href="widgets.html">
           <svg class="nav-icon">

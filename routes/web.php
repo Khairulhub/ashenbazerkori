@@ -4,6 +4,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admincontroller;
 use App\Http\Controllers\Backend\Brandcontroller;
+use App\Http\Controllers\Backend\Productcontroller;
 use App\Http\Controllers\Backend\Categorycontroller;
 
 /*
@@ -55,6 +56,19 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/edit/{id}',[Categorycontroller::class, 'edit'])->name('category.edit');
         Route::post('/update/{id}',[Categorycontroller::class, 'update'])->name('category.update');
         Route::get('/delete/{id}',[Categorycontroller::class, 'destroy'])->name('category.delete');
+        
+    });
+
+    
+    //create products route
+    
+    Route::group(['prefix'=>'product'],function(){
+        Route::get('/manage',[Productcontroller::class, 'index'])->name('product.manage');
+        Route::get('create',[Productcontroller::class, 'create'])->name('product.create');
+        Route::post('/store',[Productcontroller::class, 'store'])->name('product.store');
+        Route::get('/edit/{id}',[Productcontroller::class, 'edit'])->name('product.edit');
+        Route::post('/update/{id}',[Productcontroller::class, 'update'])->name('product.update');
+        Route::get('/delete/{id}',[Productcontroller::class, 'destroy'])->name('product.delete');
         
     });
 }
