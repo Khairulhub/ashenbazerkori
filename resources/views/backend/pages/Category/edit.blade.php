@@ -36,13 +36,26 @@
                         <option value="0"> Please select the Parent Category if any</option>
 
                         @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', 0)->get() as $parentcategory )
-                        <option value="{{$parentcategory->id}}" > {{ $parentcategory->name}}</option>
+                        <option value="{{$parentcategory->id}}"
+                             @if ($parentcategory->is_parent==0 && $category->id==$parentcategory->id)
+                                selected
+                            @endif
+                            > {{ $parentcategory->name}}
+                    </option>
+
+
                             @foreach ( App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', $parentcategory->id)->get() as $childcategory )
-                                <option value="{{$childcategory->id}}" >- {{ $childcategory->name}}</option>
+                                <option value="{{$childcategory->id}}" 
+                                    @if ( $category->id==$childcategory->id)
+                                        selected
+                                    @endif
+                            >- {{ $childcategory->name}}</option>
                             @endforeach
                         @endforeach
                     </select>
                 </div>
+
+
 
                 <div class="form-group mb-2">
                     <label for="status" class="fw-bold">Status</label>
@@ -63,7 +76,10 @@
                     No Thumbanil
                     @endif
                     <br> <br>
-                    <input type="file" name="image" id="image" class="form-control">
+                    <span>plese select the image<span class="text-danger">*</span></span>
+                    <input type="file" name="image" id="image" class="form-control" >
+
+                   
                 </div>
 
 

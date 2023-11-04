@@ -88,10 +88,9 @@ class Categorycontroller extends Controller
     public function update(Request $request, string $id)
     {
         $category = Category::find($id);
-        
-        
-
-        
+        if(is_null($category)){
+            return redirect()->route('category.manage');
+        }
         $category->name  = $request->name;
         $category->slug  = Str::slug($request->name);
         $category->description  = $request->description;
@@ -129,10 +128,8 @@ class Categorycontroller extends Controller
                 File::delete('Backend/img/category/' . $category->image);
             }
             $category->delete();
-            return redirect()->route('category.manage');
         }
-        else{
-            return redirect()->route('category.manage');
-        }
+        return redirect()->route('category.manage');
+        
     }
 }
