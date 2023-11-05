@@ -74,9 +74,22 @@
                                 <select name="category_id" id="category_id"  class="form-select">
             
                                     <option selected> Please select the Product Category </option>
-                                    @foreach ($categories as $category )
+                                    {{-- show all the category  --}}
+                                    {{-- @foreach ($categories as $category )
                                         
                                     <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach --}}
+
+
+                                    {{-- show category as parent and child  --}}
+                                    @foreach (App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', 0)->get() as $parentcategory)
+
+                                        <option value="{{$parentcategory->id}}">{{$parentcategory->name}}</option>
+
+                                        @foreach (App\Models\Backend\Category::orderBy('name','asc')->where('is_parent', $parentcategory->id)->get() as $childcategory)
+
+                                        <option value="{{$childcategory->id}}">--{{$childcategory->name}}</option>
+                                    @endforeach
                                     @endforeach
                                     
                                 </select>

@@ -20,7 +20,9 @@ class Productcontroller extends Controller
     public function index()
     {
         $products = Product::orderBy('title','asc')->get();
-        return view('backend.pages.product.manage',compact('products'));
+        $brands = Brand::orderBy('name','asc')->get();
+        $categories = Category::orderBy('name','asc')->get();
+        return view('backend.pages.product.manage',compact('products','brands','categories'));
     }
 
     /**
@@ -29,8 +31,8 @@ class Productcontroller extends Controller
     public function create()
     {
         $brands = Brand::orderBy('name','asc')->get();
-        $categories = Category::orderBy('name','asc')->get();
-        return view('backend.pages.product.create',compact('brands','categories'));
+        // $categories = Category::orderBy('name','asc')->get();
+        return view('backend.pages.product.create',compact('brands'));
     }
 
     /**

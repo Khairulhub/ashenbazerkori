@@ -21,6 +21,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
+                <th scope="col">Brand</th>
                 <th scope="col">Category</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Regular Price</th>
@@ -47,10 +48,11 @@
                         @endif
                     </td>
                   
-                    <td>{{$product -> category_id}}</td>
-                    <td>{{$product -> quantity}}</td>
-                    <td>{{$product -> regular_price}}</td>
-                    <td>{{$product -> offer_price}}</td>
+                    <td>{{$product -> brand->name}}</td> {{-- come from brand model because of relationship--}}
+                    <td>{{$product -> category->name}}</td> {{-- come from category model because of relationship--}}
+                    <td>{{$product -> quantity}} PCs</td>
+                    <td>{{$product -> regular_price}} BDT</td>
+                    <td>{{$product -> offer_price}} BDT</td>
                  
                     <td>
                         @if ($product -> featured_item == 1)
