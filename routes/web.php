@@ -4,6 +4,7 @@ use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admincontroller;
 use App\Http\Controllers\Backend\Brandcontroller;
+use App\Http\Controllers\Frontend\homeController;
 use App\Http\Controllers\Backend\Productcontroller;
 use App\Http\Controllers\Backend\Categorycontroller;
 
@@ -18,6 +19,8 @@ use App\Http\Controllers\Backend\Categorycontroller;
 |
 */
 
+Route::get('/',[homeController::class,'index']);
+// Route::get('/home',[homeController::class,'create']);
 
 
 

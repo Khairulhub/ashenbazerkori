@@ -44,7 +44,7 @@ class Productcontroller extends Controller
         $product->title  = $request->title;
         $product->slug  = Str::slug($request->title);
         $product->short_describtion  = $request->short_describtion;
-        $product->describtion  = $request->describtion;
+        $product->describtion  = $request->description;
         $product->tags  = $request->tags;
         $product->quantity  = $request->quantity;
         $product->regular_price  = $request->regular_price;
@@ -83,7 +83,14 @@ class Productcontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $brands = Brand::orderBy('name','asc')->get();
+        $product = Product::find($id);
+        if(!is_null($product)){
+            return view('backend.pages.product.edit',compact('product','brands'));
+        }
+        else{
+            return redirect()->route('product.manage');
+        }
     }
 
     /**
@@ -91,7 +98,40 @@ class Productcontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+        $product->title  = $request->title;
+        $product->slug  = Str::slug($request->title);
+        $product->short_describtion  = $request->short_describtion;
+        $product->describtion  = $request->description;
+        $product->tags  = $request->tags;
+        $product->quantity  = $request->quantity;
+        $product->regular_price  = $request->regular_price;
+        $product->offer_price  = $request->offer_price;
+        $product->sku_code  = $request->sku_code;
+        $product->category_id  = $request->category_id;
+        $product->brand_id  = $request->brand_id;
+        $product->product_type  = $request->product_type;
+    
+      
+        $product->featured_item  = $request->featured_item;
+        $product->status  = $request->status;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $img = rand() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('Backend/img/product/' . $img);
+
+             // Delete the old image file if it exists
+            if (File::exists('Backend/img/product/' . $product->image)) {
+                File::delete('Backend/img/product/' . $product->image);
+            }
+            
+            Image::make($image)->save($location);
+            $product->image = $img;  
+        }
+
+        $product->save();
+        return redirect()->route('product.manage');
     }
 
     /**
@@ -99,6 +139,14 @@ class Productcontroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = product::find($id);
+        if(!is_null($product)){
+            // Delete the product image
+            if (File::exists('Backend/img/product/' . $product->image)) {
+                File::delete('Backend/img/product/' . $product->image);
+            }
+            $product->delete();
+        }
+        return redirect()->route('product.manage');
     }
 }

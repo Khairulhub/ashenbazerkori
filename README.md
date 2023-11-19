@@ -1,18 +1,20 @@
 <p align="center"><a href="https://image.intervention.io/v2/introduction/installation#installation" target="_blank">Image Extension for laravel . </a></p>
 
+## Full Link of all connecton
 
+-   <a href="https://gitmind.com/app/docs/mndruk9k">Git Mind of database with frontend</a>
 
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
@@ -30,19 +32,19 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **[Vehikl](https://vehikl.com/)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[WebReinvent](https://webreinvent.com/)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+-   **[Cyber-Duck](https://cyber-duck.co.uk)**
+-   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+-   **[Jump24](https://jump24.co.uk)**
+-   **[Redberry](https://redberry.international/laravel/)**
+-   **[Active Logic](https://activelogic.com)**
+-   **[byte5](https://byte5.de)**
+-   **[OP.GG](https://op.gg)**
 
 ## Contributing
 
@@ -60,62 +62,60 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
--prepare the folder structure for admin and frontend 
+-prepare the folder structure for admin and frontend
 
 ==============================>>>>>>>>>>>>>>>>>>>>>>>>=======================
 -Model = Backend and Frontend
 -Controller = Backend and Frontend
 -view = Backend and Frontend
 
+==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
+migrations with command
 
 ==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
-migrations with command 
-
-==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
-                        manage page a pic dekhano 
-                        serial number thik kora
-                        is_featured and status show
-                        code is below 
+manage page a pic dekhano
+serial number thik kora
+is_featured and status show
+code is below
 ==========================>>>>>>>>>>>>>>>>>>>>>>>>=======================
 
- @php $i=1; @endphp
+@php $i=1; @endphp
     @foreach ( $brands as $brand )
                 <tr>
                     <th scope="row">{{$i}}</th>
-                    <td>
-                        @if(!is_null($brand->image))
+<td>
+@if(!is_null($brand->image))
                         <img src="{{ asset('Backend/img/brand') }}/{{$brand -> image}}" alt="" width="30">
-                        @else
-                        No Thumbanil
-                        @endif
-                    </td>
-                    <td>{{$brand -> name}}</td>
-                    <td>{{$brand -> slug}}</td>
-                    <td>{{$brand -> description}}</td>
-                    {{-- {{$brand -> is_featured}} --}}
-                    <td>
-                        @if ($brand -> is_featured == 1)
+@else
+No Thumbanil
+@endif
+</td>
+<td>{{$brand -> name}}</td>
+<td>{{$brand -> slug}}</td>
+<td>{{$brand -> description}}</td>
+{{-- {{$brand -> is_featured}} --}}
+<td>
+@if ($brand -> is_featured == 1)
                             <span class="badge bg-success">Yes</span>
                         @else
                             <span class="badge bg-warning">No</span>
                         @endif
                     </td>
                     {{-- {{$brand -> status}} --}}
-                    <td>
-                        @if ($brand -> status == 1)
-                            <span class="badge bg-success">Active</span>
-                        @else
-                            <span class="badge bg-danger">InActive</span>
-                        @endif
-                    </td>
-                    <td >
-                        <i class="fa-solid fa-pen-to-square text-success me-2"></i>
-    
+<td>
+@if ($brand -> status == 1)
+<span class="badge bg-success">Active</span>
+@else
+<span class="badge bg-danger">InActive</span>
+@endif
+</td>
+<td >
+<i class="fa-solid fa-pen-to-square text-success me-2"></i>
+
                         <i class="fa-solid fa-trash text-danger ms-2"></i>
                     </td>
                   </tr>
 
     @php $i++; @endphp
+
 @endforeach
-              
-           
