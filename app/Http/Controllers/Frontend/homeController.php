@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use File;
+
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Backend\Slider;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class homeController extends Controller
 {
@@ -12,7 +17,9 @@ class homeController extends Controller
      */
     public function index()
     {
-        return view('frontend.layout.master');
+        $sliders = Slider::orderBy('id','asc')->get();
+        // dd($sliders);
+        return view('frontend.layout.master',compact('sliders'));
     }
 
     /**

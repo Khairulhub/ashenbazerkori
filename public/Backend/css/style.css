@@ -14032,5 +14032,11 @@ html:not([dir=rtl]) .wrapper {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-
+.active{
+  background-color: #0abde3 !important;
+}
+.actived{
+  background-color: #5e636a !important;
+  color: #0abde3 !important;
+}
 /*# sourceMappingURL=style.css.map */

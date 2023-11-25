@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admincontroller;
 use App\Http\Controllers\Backend\Brandcontroller;
 use App\Http\Controllers\Frontend\homeController;
+use App\Http\Controllers\Backend\Districontroller;
+use App\Http\Controllers\Backend\Slidercontroller;
 use App\Http\Controllers\Backend\Productcontroller;
 use App\Http\Controllers\Backend\Categorycontroller;
+use App\Http\Controllers\Backend\Divisioncontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +76,39 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/update/{id}',[Productcontroller::class, 'update'])->name('product.update');
         Route::get('/delete/{id}',[Productcontroller::class, 'destroy'])->name('product.delete');
         
+    });
+
+      //create Division route 
+
+      Route::group(['prefix'=>'division'],function(){
+        Route::get('/manage',[Divisioncontroller::class, 'index'])->name('division.manage');
+        Route::get('/create',[Divisioncontroller::class, 'create'])->name('division.create');
+        Route::post('/store',[Divisioncontroller::class, 'store'])->name('division.store');
+        Route::get('/edit/{id}',[Divisioncontroller::class, 'edit'])->name('division.edit');
+        Route::post('/update/{id}',[Divisioncontroller::class, 'update'])->name('division.update');
+        Route::get('/delete/{id}',[Divisioncontroller::class, 'destroy'])->name('division.delete');
+    });
+
+      //create District route 
+
+      Route::group(['prefix'=>'district'],function(){
+        Route::get('/manage',[Districontroller::class, 'index'])->name('district.manage');
+        Route::get('/create',[Districontroller::class, 'create'])->name('district.create');
+        Route::post('/store',[Districontroller::class, 'store'])->name('district.store');
+        Route::get('/edit/{id}',[Districontroller::class, 'edit'])->name('district.edit');
+        Route::post('/update/{id}',[Districontroller::class, 'update'])->name('district.update');
+        Route::get('/delete/{id}',[Districontroller::class, 'destroy'])->name('district.delete');
+    });
+
+      //create slider route 
+
+      Route::group(['prefix'=>'slider'],function(){
+        Route::get('/manage',[Slidercontroller::class, 'index'])->name('slider.manage');
+        Route::get('/create',[Slidercontroller::class, 'create'])->name('slider.create');
+        Route::post('/store',[Slidercontroller::class, 'store'])->name('slider.store');
+        Route::get('/edit/{id}',[Slidercontroller::class, 'edit'])->name('slider.edit');
+        Route::post('/update/{id}',[Slidercontroller::class, 'update'])->name('slider.update');
+        Route::get('/delete/{id}',[Slidercontroller::class, 'destroy'])->name('slider.delete');
     });
 }
 );
