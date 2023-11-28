@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('image')->nullable();
             $table->string('address')->nullable();
-            $table->integer('is_admin')->default(0)->comment('0 for super admin and 1 for user');
+            $table->string('utype')->default('user')->comment('user for user and admin for admin');
             $table->rememberToken();
             $table->timestamps();
         });

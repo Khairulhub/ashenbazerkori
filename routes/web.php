@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\Admincontroller;
 use App\Http\Controllers\Backend\Brandcontroller;
 use App\Http\Controllers\Frontend\homeController;
@@ -11,26 +11,33 @@ use App\Http\Controllers\Backend\Productcontroller;
 use App\Http\Controllers\Backend\Categorycontroller;
 use App\Http\Controllers\Backend\Divisioncontroller;
 
-/*
-|--------------------------------------------------------------------------
-| Frontend Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/',[homeController::class,'index']);
-// Route::get('/home',[homeController::class,'create']);
+// Route::get('/login',[homeController::class,'login'])->name('login');
+// Route::get('/registration',[homeController::class,'registration'])->name('registration');
+
+
 
 
 
 
 /*
 |--------------------------------------------------------------------------
-| Backend Web Routes
+| Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -38,8 +45,24 @@ Route::get('/',[homeController::class,'index']);
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(['prefix'=>'admin'],function(){
-    Route::get('/dashbord',[Admincontroller::class, 'index'])->name('dashbord');
+require __DIR__.'/auth.php';
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashbord');
+
+
+// middleware(['auth', 'verified'])->name('dashbord')
+
+
+
+
+
+Route::group( ['prefix' => 'admin'],function(){
+    // Route::get('/dashbord',[Admincontroller::class, 'index'])->middleware(['auth'])->name('dashbord');
 
 
     //create bands route 
@@ -112,3 +135,30 @@ Route::group(['prefix'=>'admin'],function(){
     });
 }
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });

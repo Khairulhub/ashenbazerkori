@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Backend\Slider;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class homeController extends Controller
@@ -21,10 +22,42 @@ class homeController extends Controller
         // dd($sliders);
         return view('frontend.layout.master',compact('sliders'));
     }
+    // public function login()
+    // {
+    //     // $sliders = Slider::orderBy('id','asc')->get();
+    //     // // dd($sliders);
+    //     // return view('frontend.pages.login');
+        
+    // }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->only('email', 'password');
+    
+    //     if (Auth::attempt($credentials)) {
+    //         // Authentication passed, redirect to the dashboard
+    //         return redirect()->route('dashbord');
+    //     }
+    
+    //     // Authentication failed, redirect back with errors
+    //     return redirect()->route('login')->with('error', 'Invalid credentials');
+    // }
+    
+    // public function registration()
+    // {
+    //     // $sliders = Slider::orderBy('id','asc')->get();
+    //     // // dd($sliders);
+    //     return view('frontend.pages.registration');
+    // }
+
+  
+
+
+
+
+
+
+    
     public function create()
     {
         return view('frontend.maintemp');
