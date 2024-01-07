@@ -25,13 +25,34 @@
         <li class="nav-item"><a class="nav-link" href="#">
             <svg class="icon icon-lg">
               <use xlink:href="{{asset('backend/vendors/@coreui/icons/svg/free.svg#cil-envelope-open')}}"></use>
+              
             </svg></a></li>
       </ul>
       <ul class="header-nav ms-3">
         <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <div class="avatar avatar-md"><img class="avatar-img" src="assets/img/avatars/8.jpg" alt="user@email.com"></div>
+            <div class="avatar avatar-md"><img class="avatar-img" src="{assets/img/avatars/8.jpg}" alt="user@email.com"></div>
           </a>
           <div class="dropdown-menu dropdown-menu-end pt-0">
+{{-- information --}}
+
+
+<div class="my-2 text-center">
+  @auth
+      <span>{{ Auth::user()->name }}</span>
+      <span style="font-size: 12px;">{{ Auth::user()->email }}</span>
+  @else
+      <span>
+          <a href="{{ route('login') }}">Login</a>
+      </span>
+      <!-- You can customize the login link as needed -->
+  @endauth
+</div>
+
+
+
+
+
+
             <div class="dropdown-header bg-light py-2">
               <div class="fw-semibold">Account</div>
             </div><a class="dropdown-item" href="#">
@@ -62,13 +83,33 @@
               <svg class="icon me-2">
                 <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
               </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
-              <svg class="icon me-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-              </svg> Lock Account</a><a class="dropdown-item" href="#">
-              <svg class="icon me-2">
-                <use xlink:href="{{asset('backend/vendors/@coreui/icons/svg/free.svg#cil-account-logout')}}"></use>
-              </svg> Logout</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><svg class="icon me-2">
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+            </svg>
+               Lock Account</a>
+
+{{-- ========================form tag will add for route without form route is not work . i work only for post method --}}
+
+
+{{-- 
+
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+
+               <a class="dropdown-item" href="{{ route('logout') }} "onclick="event.preventDefault(); this.closest('form').submit();">
+                     Logout
+               </a>
+
+              </form> --}}
+             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <svg class="icon me-2">
+              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+            </svg>Logout</a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+
           </div>
         </li>
       </ul>

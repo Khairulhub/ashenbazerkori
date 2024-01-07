@@ -64,7 +64,7 @@
                         <option value="0"> Please select the Parent Category if any</option>
                         @foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', 0)->get() as $parentcategory)
                             <option value="{{ $parentcategory->is_parent }}"
-                                @if ($parentcategory->is_parent == 0 && $category->id == $parentcategory->is_parent)
+                                @if ($category->id == $parentcategory->id)
                                 selected
                                 @endif
                             > {{ $parentcategory->name }}
@@ -72,7 +72,7 @@
                 
                             @foreach (App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', $parentcategory->is_parent)->get() as $childcategory)
                                 <option value="{{ $childcategory->id }}"
-                                    @if ($category->id == $childcategory->id)
+                                    @if ($category->is_parent == $childcategory->id)
                                     selected
                                     @endif
                                 >- {{ $childcategory->name }}</option>

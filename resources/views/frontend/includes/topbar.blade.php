@@ -82,31 +82,61 @@
                             <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> 
+                                <span class="total-count">{{App\Models\Frontend\Cart::totalItems()}}
+                                   
+                                </span></a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
                                 <div class="dropdown-cart-header">
-                                    <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                                    <span>{{ count(App\Models\Frontend\Cart::totalCarts()) }} Items</span>
+                                    <a href="{{route('cart.item')}}">View Cart</a>
                                 </div>
                                 <ul class="shopping-list">
+                                    @foreach (App\Models\Frontend\Cart::totalCarts() as $item)
                                     <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                        <form action="{{route('cart.destroy', $item->id)}}" method="POST">
+                                            @csrf 
+                                            <button type="submit" class="remove" title="Remove this item">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                        </form>
+
+
+                                        <a class="cart-img" href="#">
+                                            @if (!is_null($item->Product->image))
+                                                <img src="{{asset('Backend/img/product/'.$item->Product->image)}}" alt="#">
+                                            @else
+                                                
+                                            <img src="https://via.placeholder.com/70x70" alt="#">
+                                            @endif
+                                        </a>
+                                        <h4><a href="#">{{$item->Product->title}}</a></h4>
+                                        <p class="quantity"> {{$item->product_quantity}}x - 
+                                            <span class="amount">$
+                                                @if (!is_null($item->Product->offer_price))
+                                                    {{$item->Product->offer_price}}
+                                                @else
+                                                    {{$item->Product->regulate_price}}   
+                                                    
+                                                @endif
+                                            </span>
+                                        </p>
                                     </li>
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                    </li>
+                                    @endforeach
+                                   
+                                    
                                 </ul>
                                 <div class="bottom">
                                     <div class="total">
                                         <span>Total</span>
-                                        <span class="total-amount">$134.00</span>
+                                        <span class="total-amount">৳
+                                            @if (App\Models\Frontend\Cart::totalPrice() > 0)
+                                            {{App\Models\Frontend\Cart::totalPrice()}}
+                                            @else
+                                            0
+                                            @endif
+                                        </span>
                                     </div>
                                     <a href="checkout.html" class="btn animate">Checkout</a>
                                 </div>
@@ -127,20 +157,23 @@
                         <div class="all-category">
                             <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                             <ul class="main-category">
-                                <li><a href="#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                @foreach ( App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent',0)->get() as $parentcategory )
+                                    
+                               
+                                <li>
+                                    
+                                    <a  href="{{route('category.show', $parentcategory->slug)}}"><i class="{{$parentcategory->icon_class}}" ></i>{{$parentcategory->name}} </a>
                                     <ul class="sub-category">
-                                        <li><a href="#">accessories</a></li>
-                                        <li><a href="#">best selling</a></li>
-                                        <li><a href="#">top 100 offer</a></li>
-                                        <li><a href="#">sunglass</a></li>
-                                        <li><a href="#">watch</a></li>
-                                        <li><a href="#">man’s product</a></li>
-                                        <li><a href="#">ladies</a></li>
-                                        <li><a href="#">westrn dress</a></li>
-                                        <li><a href="#">denim </a></li>
+                                        @foreach ( App\Models\Backend\Category::orderBy('name', 'asc')->where('is_parent', $parentcategory->id)->get() as $childcategory )
+                                        <li><a href="{{route('category.show', $childcategory->slug)}}">{{$childcategory->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li class="main-mega"><a href="#">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                @endforeach
+
+
+
+                                {{-- <li class="main-mega"><a href="#">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     <ul class="mega-menu">
                                         <li class="single-menu">
                                             <a href="#" class="title-link">Shop Kid's</a>
@@ -187,7 +220,7 @@
                                 <li><a href="#">man’s product</a></li>
                                 <li><a href="#">ladies</a></li>
                                 <li><a href="#">westrn dress</a></li>
-                                <li><a href="#">denim </a></li>
+                                <li><a href="#">denim </a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -198,12 +231,12 @@
                                 <div class="navbar-collapse">	
                                     <div class="nav-inner">	
                                         <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="#">Home</a></li>
-                                                <li><a href="#">Product</a></li>												
+                                                <li class="active"><a href="{{route('home')}}">Home</a></li>
+                                                <li><a href="{{ route('allProducts') }}">Product</a></li>												
                                                 <li><a href="#">Service</a></li>
                                                 <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">Cart</a></li>
+                                                        <li><a href="{{route('cart.item')}}">Cart</a></li>
                                                         <li><a href="checkout.html">Checkout</a></li>
                                                     </ul>
                                                 </li>

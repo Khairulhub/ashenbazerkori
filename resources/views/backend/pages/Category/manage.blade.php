@@ -41,7 +41,7 @@
                         No Thumbanil
                         @endif
                     </td>
-                    <td ><b>{{$category -> name}}</b> <i class="fa-solid fa-arrow-turn-down text-success"></i></td>
+                    <td ><b>{{$category -> name}}</b> </td>
                     <td>{{$category -> slug}}</td>
                     <td>{{$category -> description}}</td>
                     {{-- {{$brand -> is_featured}} --}}

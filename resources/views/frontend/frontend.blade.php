@@ -24,7 +24,7 @@
 	
 	@include('frontend.includes.topbar')
 	
-		@yield('maruf')
+		@yield('khairul')
 			
 	{{-- <h1 class="bg-light ">hello hi</h1> --}}
 	

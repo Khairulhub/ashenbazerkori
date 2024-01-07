@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+// protected $namespace = 'App\\Http\\Controllers';
+use App\Http\Controllers\Backend\Admincontroller;
 
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -17,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = 'admin/dashbord';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->integer('is_parent')->default(0)->comment('0 for parent and 1 for child');
+            $table->integer('featured')->default(0)->comment('0 for normal and 1 for Featured');
+            $table->string('icon_class')->nullable();
             $table->integer('status')->default(0)->comment('0 for InActive and 1 for Active');
             $table->timestamps();
         });

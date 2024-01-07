@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('tags')->nullable();
             $table->unsignedBigInteger('quantity')->default(1);
             $table->integer('regular_price')->default(0);
-            $table->integer('offer_price')->nullable();
+            $table->string('offer_price')->nullable();
             $table->string('sku_code')->nullable();
             $table->integer('category_id');
             $table->integer('brand_id');         

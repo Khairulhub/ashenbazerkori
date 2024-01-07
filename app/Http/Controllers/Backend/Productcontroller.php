@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Backend\Brand;
 use App\Models\Backend\Product;
-use App\Http\Controllers\Controller;
 use App\Models\Backend\Category;
+use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 
 class Productcontroller extends Controller

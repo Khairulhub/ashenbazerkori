@@ -5,7 +5,7 @@
 <!-- Popper JS -->
 <script src="{{asset('Frontend/js/popper.min.js')}}"></script>
 <!-- Bootstrap JS -->
-{{-- <script src="{{asset('Frontend/js/bootstrap.min.js')}}"></script> --}}
+<script src="{{asset('Frontend/js/bootstrap.min.js')}}"></script>
 <!-- Color JS -->
 <script src="{{asset('Frontend/js/colors.js')}}"></script>
 <!-- Slicknav JS -->
@@ -32,3 +32,16 @@
 <script src="{{asset('Frontend/js/active.js')}}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{{-- all products --}}
+
+
+<script src="{{asset('Frontend/allproducts/js/main.js')}}"></script>
+<script src="{{asset('Frontend/allproducts/mail/contact.js')}}"></script>
+<script src="{{asset('Frontend/allproducts/mail/jqBootstrapValidation.min.js')}}"></script>
+<script src="{{asset('Frontend/allproducts/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('Frontend/allproducts/lib/easing/easing.min.js')}}"></script>
+
+
+
+
+

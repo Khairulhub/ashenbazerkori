@@ -10,23 +10,36 @@ use App\Http\Controllers\Backend\Slidercontroller;
 use App\Http\Controllers\Backend\Productcontroller;
 use App\Http\Controllers\Backend\Categorycontroller;
 use App\Http\Controllers\Backend\Divisioncontroller;
+use App\Http\Controllers\Frontend\CartController;
+
+Route::get('/',[homeController::class,'index'])->name('home');
+
+Route::group( ['prefix' => 'product'],function()
+{
+    Route::get('/',[homeController::class,'allproducts'])->name('allProducts');
+    Route::get('/{slug}',[homeController::class,'productshow'])->name('product.show');
+    Route::get('/category',[homeController::class,'productcategory'])->name('product.category');
+    Route::get('/category/{slug}',[homeController::class,'categoryshow'])->name('category.show');
+
+ 
+});
+
+
+// cart related routes
+Route::group( ['prefix' => 'cart'],function()
+{
+    Route::get('/',[CartController::class,'index'])->name('cart.item');
+    Route::post('/sore',[CartController::class,'store'])->name('cart.store');
+    Route::post('/update/{id}',[CartController::class,'update'])->name('cart.update');
+    Route::post('/destroy/{id}',[CartController::class,'destroy'])->name('cart.destroy');
+
+ 
+});
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/',[homeController::class,'index']);
 // Route::get('/login',[homeController::class,'login'])->name('login');
 // Route::get('/registration',[homeController::class,'registration'])->name('registration');
 
@@ -50,9 +63,9 @@ require __DIR__.'/auth.php';
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashbord');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashbord');
 
 
 // middleware(['auth', 'verified'])->name('dashbord')
@@ -62,7 +75,7 @@ Route::get('/dashboard', function () {
 
 
 Route::group( ['prefix' => 'admin'],function(){
-    // Route::get('/dashbord',[Admincontroller::class, 'index'])->middleware(['auth'])->name('dashbord');
+    Route::get('/dashbord',[Admincontroller::class, 'index'])->middleware(['auth'])->name('dashbord');
 
 
     //create bands route 

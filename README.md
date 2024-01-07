@@ -119,3 +119,26 @@ No Thumbanil
     @php $i++; @endphp
 
 @endforeach
+
+
+
+
+
+<!-- when i want to login or register then it takes me to /dashboard but we need to go to /admin/dashbord so we need to do this ==> app . providers . routeServiceProvider 
+update it   public const HOME = '/dashboard'; to admin/dashbord-->
+
+-   public const HOME = 'admin/dashbord';
+
+<!-- logout code if need to change it . i will change it  -->
+
+#   <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                        

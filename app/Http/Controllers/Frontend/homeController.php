@@ -7,7 +7,9 @@ use File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Backend\Slider;
+use App\Models\Backend\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Category;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
@@ -19,37 +21,72 @@ class homeController extends Controller
     public function index()
     {
         $sliders = Slider::orderBy('id','asc')->get();
+        $hotProducts =Product::orderBy('id','desc')->paginate(8);
+        $featuredProducts =Product::orderBy('id','desc')->where('featured_item',1)->get();
         // dd($sliders);
-        return view('frontend.layout.master',compact('sliders'));
+        return view('frontend.layout.master',compact('sliders','hotProducts','featuredProducts'));
     }
-    // public function login()
-    // {
-    //     // $sliders = Slider::orderBy('id','asc')->get();
-    //     // // dd($sliders);
-    //     // return view('frontend.pages.login');
+
+
+
+    // all products 
+    public function allproducts()
+    {
+        $sliders = Slider::orderBy('id','asc')->get();
+
+        $allproducts = Product::orderBy('id','desc')->paginate(10);
+        $hotProducts =Product::orderBy('id','desc')->get();
+        $featuredProducts =Product::orderBy('id','desc')->where('featured_item',1)->get();
+        // dd($sliders);
+        return view('frontend.pages.product.allproductsdetails',compact('sliders','allproducts','hotProducts','featuredProducts'));
+    }
+ 
+    // productshow 
+    public function productshow($slug)
+    {
+        $sliders = Slider::orderBy('id','asc')->get();
+        $hotProducts =Product::orderBy('id','desc')->get();
+        $featuredProducts =Product::orderBy('id','desc')->where('featured_item',1)->get();
+        $value = Product::where('slug',$slug)->first();
+
+
+        if(!is_null($value))
+        {
+            return view('frontend.pages.product.productdetails',compact('sliders','hotProducts','value','featuredProducts'));
+        }
+        else{
+            return back();
+        }
+       
+    }
+ 
+    // productcategory 
+    public function productcategory()
+    {
+       
+        return view('frontend.pages.product.allproductsdetails');
+       
+       
+    }
+ 
+    // categoryshow 
+    public function categoryshow($slug)
+    {
+        $category = Category::where('slug',$slug)->first();
+        $sliders = Slider::orderBy('id','asc')->get();
+        $hotProducts =Product::orderBy('id','desc')->get();
+        $featuredProducts =Product::orderBy('id','desc')->where('featured_item',1)->get();
         
-    // }
-
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
-    
-    //     if (Auth::attempt($credentials)) {
-    //         // Authentication passed, redirect to the dashboard
-    //         return redirect()->route('dashbord');
-    //     }
-    
-    //     // Authentication failed, redirect back with errors
-    //     return redirect()->route('login')->with('error', 'Invalid credentials');
-    // }
-    
-    // public function registration()
-    // {
-    //     // $sliders = Slider::orderBy('id','asc')->get();
-    //     // // dd($sliders);
-    //     return view('frontend.pages.registration');
-    // }
-
+       if(!is_null($category)){
+        
+           return view('frontend.pages.product.category',compact('category','sliders','hotProducts','featuredProducts'));
+       }
+       else{
+        return redirect()->route('home');
+       }
+       
+    }
+ 
   
 
 
